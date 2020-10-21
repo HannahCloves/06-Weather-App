@@ -1,3 +1,27 @@
+/* nav bar heading styling */
 .h1 {
     font-size: 30px;
+}
+
+.container {
+    background-color: black;
+}
+
+
+
+
+
+
+
+
+/* styling for footer */
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
 }
