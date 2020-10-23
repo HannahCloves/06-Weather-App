@@ -1,20 +1,29 @@
 /* nav bar heading styling */
-.navbar {
-    background-color: #e3f2fd;
+.navbar, body {
+    background-color: white;
 }
 
 .h1 {
     font-size: 30px;
 }
 
+h3 {
+    font-size: 20px;
+}
+
 .row{
     padding-left: 20px;
     padding-right: 20px;
-    background-color: lightgreen;
 }
 
-.card-body {
+.card-body, .card-block {
     text-align: center;
+    background-color: #CCDBFD;
+}
+
+.card {
+    border-style: solid;
+    border-color: #ABC4FF;
 }
 
 /* styling for footer */
@@ -24,7 +33,7 @@ footer {
     bottom: 0;
     width: 100%;
     padding: 10px;
-    color: black;
+    color: #ABC4FF;
     text-align: center;
     font-weight: bold;
 }
