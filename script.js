@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    const todaysDate = $("#mainLocation").append(moment().format("ll"));
+    $("#main-location").append(moment().format("ll"));
     $("#dayOneHeader").append(moment().add(1, 'days').format("ll"));
     $("#dayTwoHeader").append(moment().add(2, 'days').format("ll"));
     $("#dayThreeHeader").append(moment().add(3, 'days').format("ll"));
@@ -27,8 +27,14 @@ locationSearch.submit(function (event) {
     });
     
     function updateMainResults(locationData) {
+        const locationName = locationData.name
         const locationTemp = locationData.main.temp
-    console.log(locationTemp)
+        const locationWind = locationData.wind.speed
+
+
+            console.log(locationTemp)
+            console.log(locationName)
+            console.log(locationWind)
     }
 });
 
