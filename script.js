@@ -8,39 +8,49 @@ $(document).ready(function () {
     $("#dayFiveHeader").append(moment().add(5, 'days').format("ll"));
 
 
-const locationSearch = $("#location-search");
-const locationPlace = $("#location-search input[name='search-location']");
+    const locationSearch = $("#location-search");
+    const locationPlace = $("#location-search input[name='search-location']");
 
-locationSearch.submit(function (event) {
-    const locationPlaceString = locationPlace.val()
-    event.preventDefault();
-    const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
-    
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(locationData){
-        updateMainResults(locationData);
-    });
-    
-    function updateMainResults(locationData) {
+    locationSearch.submit(function (event) {
         event.preventDefault();
-        const locationName = locationData.name
-        const locationTemp = locationData.main.temp
-        const locationWind = locationData.wind.speed
-        const locationHumid = locationData.main.humidity
+        const locationPlaceString = locationPlace.val()
+        const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
-       $("#main-location").text(locationName + " - " + todaysDate); 
-       $("#mainTemp").text("Current Temperature: " + locationTemp + " °C");
-       $("#mainHumid").text("Humidity: " + locationHumid + "%");
-       $("#mainWind").text("Wind Speed: " + locationWind + " MPH");
-       
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (locationData) {
+            updateMainResults(locationData);
+        });
 
-            console.log(locationTemp)
-            console.log(locationName)
-            console.log(locationWind)
-            console.log(locationHumid)
-    }
-});
+        function updateMainResults(locationData) {
+            event.preventDefault();
+            const locationName = locationData.name
+            const locationTemp = locationData.main.temp
+            const locationWind = locationData.wind.speed
+            const locationHumid = locationData.main.humidity
+
+            $("#main-location").text(locationName + " - " + todaysDate);
+            $("#mainTemp").text("Current Temperature: " + locationTemp + " °C");
+            $("#mainHumid").text("Humidity: " + locationHumid + "%");
+            $("#mainWind").text("Wind Speed: " + locationWind + " MPH");
+
+            const locationLat = locationData.coord.lat
+            const locationLon = locationData.coord.lon
+            const uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + locationLat + "&lon=" + locationLon + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
+            console.log(uvURL)
+
+
+
+        };
+
+
+    });
+
+
+
+
+
+
 });
 
