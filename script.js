@@ -14,7 +14,7 @@ const locationPlace = $("#location-search input[name='search-location']");
 locationSearch.submit(function (event) {
     const locationPlaceString = locationPlace.val()
     event.preventDefault();
-    const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
+    const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
     
     $.ajax({
         url: queryURL,
@@ -24,16 +24,22 @@ locationSearch.submit(function (event) {
     });
     
     function updateMainResults(locationData) {
+        event.preventDefault();
         const locationName = locationData.name
         const locationTemp = locationData.main.temp
         const locationWind = locationData.wind.speed
-      
+        const locationHumid = locationData.main.humidity
 
-       $("#main-location").append(locationName + " " + todaysDate)     
+       $("#main-location").text(locationName + " - " + todaysDate); 
+       $("#mainTemp").text("Current Temperature: " + locationTemp + " °C");
+       $("#mainHumid").text("Humidity: " + locationHumid + "%");
+       $("#mainWind").text("Wind Speed: " + locationWind + " MPH");
+       
 
             console.log(locationTemp)
             console.log(locationName)
             console.log(locationWind)
+            console.log(locationHumid)
     }
 });
 });
