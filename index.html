@@ -21,8 +21,10 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Name a place:</h5>
-          <input type="text" name="location-search" placeholder="Search Weather App">
-          <button class="btn btn-primary" type="search">Search</a>
+          <form id="location-search">
+          <input type="text" name="search-location" placeholder="Search Weather App">
+          <button class="btn btn-primary" type="submit">Search</a></button>
+          </form>
         </div>
       </div>
     </div>
@@ -82,32 +84,10 @@
           </div>
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script type="text/javascript" src="script.js"></script>
 </body>
-
-<script>
-  const locationSearch = $("#location-search");
-
-  movieSearchForm.submit(function (event) {
-    event.preventDefault();
-
-    const queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + movieTitleString + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
-
-    $.ajax({
-      url: queryURL
-    }).then(function (movieData) {
-      updateResults(movieData);
-
-    }).catch(function (error) {
-      console.log("ERROR");
-    })
-  });
-
-
-
-</script>
 <footer>
   © Copyright HannahCloves
 </footer>

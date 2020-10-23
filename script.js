@@ -11,19 +11,20 @@ $(document).ready(function () {
 
 
 const locationSearch = $("#location-search");
+const locationPlace = $("#location-search input[name='search-location']");
 
-locationSearch.search(function (event) {
-  event.preventDefault();
+locationSearch.submit(function (event) {
+    event.preventDefault();
+    const locationPlaceString = locationPlace.val()
+    const queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationPlaceString + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
+    console.log(queryURL);
+    
 
-  const queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + movieTitleString + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
-
-  $.ajax({
-    url: queryURL
-  }).then(function (weatherData) {
-    updateResults(weatherData);
-
-  }).catch(function (error) {
-    console.log("ERROR");
-  })
 });
 
+function updateResults(weatherData) {
+
+
+
+
+}
