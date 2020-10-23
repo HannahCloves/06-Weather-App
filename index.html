@@ -22,16 +22,89 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Name a place:</h5>
-          <input>
-          <button class="btn btn-primary">Search</a>
+          <input type="text" name="location-search" placeholder="Search Weather App">
+          <button class="btn btn-primary" type="search">Search</a>
         </div>
       </div>
     </div>
-  </div>
+    <div class="container">
+      <div class=" col-sm-9">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> test</h5>
+          </div>
+        </div>
+      </div>
+      <br>
+        <div class="row">
+          <div class="col">
+            <div class="card border-primary" id="dayOne">
+              <div class="card-block text-dark">
+                <h3 class="card-title">1</h3>
+                <p class="card-text">With supporting text below..</p>
 
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-primary" id="dayTwo">
+              <div class="card-block">
+                <h3 class="card-title">2</h3>
+                <p class="card-text">With supporting text below..</p>
 
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-primary" id="dayThree">
+              <div class="card-block">
+                <h3 class="card-title">3</h3>
+                <p class="card-text">With supporting text below..</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-primary" id="dayFour">
+              <div class="card-block">
+                <h3 class="card-title">4</h3>
+                <p class="card-text">With supporting text below..</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-primary" id="dayFive">
+              <div class="card-block">
+                <h3 class="card-title">5</h3>
+                <p class="card-text">With supporting text below..</p>
+
+              </div>
+            </div>
+          </div>
 </body>
 
+<script>
+  const locationSearch = $("#location-search");
+
+  movieSearchForm.submit(function (event) {
+    event.preventDefault();
+
+    const queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + movieTitleString + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
+
+    $.ajax({
+      url: queryURL
+    }).then(function (movieData) {
+      updateResults(movieData);
+
+    }).catch(function (error) {
+      console.log("ERROR");
+    })
+  });
+
+
+
+</script>
 <footer>
   © Copyright HannahCloves
 </footer>
