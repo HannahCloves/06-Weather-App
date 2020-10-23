@@ -1,14 +1,11 @@
 $(document).ready(function () {
 
-    $("#main-location").append(moment().format("ll"));
+    const todaysDate = (moment().format("ll"));
     $("#dayOneHeader").append(moment().add(1, 'days').format("ll"));
     $("#dayTwoHeader").append(moment().add(2, 'days').format("ll"));
     $("#dayThreeHeader").append(moment().add(3, 'days').format("ll"));
     $("#dayFourHeader").append(moment().add(4, 'days').format("ll"));
     $("#dayFiveHeader").append(moment().add(5, 'days').format("ll"));
-
-
-});
 
 
 const locationSearch = $("#location-search");
@@ -30,12 +27,14 @@ locationSearch.submit(function (event) {
         const locationName = locationData.name
         const locationTemp = locationData.main.temp
         const locationWind = locationData.wind.speed
+      
 
+       $("#main-location").append(locationName + " " + todaysDate)     
 
             console.log(locationTemp)
             console.log(locationName)
             console.log(locationWind)
     }
 });
-
+});
 
