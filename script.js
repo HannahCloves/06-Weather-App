@@ -86,11 +86,20 @@ $(document).ready(function () {
                 url: fiveDayURL,
                 method: "GET"
             }).then(function (fiveDayData) {
+                const dayOneIcon = toString(fiveDayData.list[1].weather["icon"])
+                const locationIconLink = "https://openweathermap.org/img/wn/" + dayOneIcon + ".png";
                 const dayOneTemp = fiveDayData.list[1].main.temp
                 const dayOneHumid = fiveDayData.list[1].main.humidity
                 console.log(dayOneTemp)
                 console.log(dayOneHumid)
+                console.log(dayOneIcon)
+                console.log(locationIconLink)
                 
+                $("#dayOneTemp").text("Temperature:" + dayOneTemp + " °C");
+                $("#dayOneHumdity").text("Humidity:"+ dayOneHumid);
+                
+
+
             })
         };
     });
