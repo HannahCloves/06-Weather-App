@@ -11,7 +11,6 @@ $(document).ready(function () {
     const locationSearch = $("#location-search");
     const locationPlace = $("#location-search input[name='search-location']");
     const locationError = $("#error");
-    let uvMessage = $("#uvMessage");
 
     locationSearch.submit(function (event) {
         event.preventDefault();
@@ -23,7 +22,8 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (locationData) {
             updateMainResults(locationData);
-        }).catch(function(error) {
+            updateFiveDay();
+        }).catch(function (error) {
             locationError.text("Oops, have you spelled something wrong? Try again!");
         });
 
@@ -33,8 +33,12 @@ $(document).ready(function () {
             const locationTemp = locationData.main.temp
             const locationWind = locationData.wind.speed
             const locationHumid = locationData.main.humidity
+            const locationIcon = locationData.weather[0].icon;
+            const locationIconLink = "https://openweathermap.org/img/wn/" + locationIcon + ".png";
+            console.log(locationIconLink)
 
             $("#main-location").text(locationName + " - " + todaysDate);
+            $("#icon").attr("src", locationIconLink)
             $("#mainTemp").text("Current Temperature: " + locationTemp + " °C");
             $("#mainHumid").text("Humidity: " + locationHumid + "%");
             $("#mainWind").text("Wind Speed: " + locationWind + " MPH");
@@ -42,35 +46,38 @@ $(document).ready(function () {
             const locationLat = locationData.coord.lat
             const locationLon = locationData.coord.lon
             const uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + locationLat + "&lon=" + locationLon + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
-            
+
             $.ajax({
                 url: uvURL,
                 method: "GET"
             }).then(function (uvData) {
                 const uvRay = uvData.value
                 $("#mainUV").text("UV:" + uvRay);
-                
-                if (uvData.value <= 2){
+
+                if (uvData.value <= 2) {
                     $("#mainUV").addClass("lowUV");
-                } else if 
-                (uvData.value <= 5) {
+                } else if
+                    (uvData.value <= 5) {
                     $("#mainUV").addClass("modUV")
-                }   else if 
-                (uvData.value <= 7) {
+                } else if
+                    (uvData.value <= 7) {
                     $("#mainUV").addClass("highUV")
-                } else if 
-                (uvData.value <= 10) {
+                } else if
+                    (uvData.value <= 10) {
                     $("#mainUV").addClass("veryHighUV")
-                } else if 
-                (uvData.value >= 11 ) {
+                } else if
+                    (uvData.value >= 11) {
                     $("#mainUV").addClass("extremeUV")
                 }
             })
-            
-            
-
         };
 
+        function updateFiveDay(){
+
+
+
+        }
+            
 
     });
 
