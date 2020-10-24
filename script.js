@@ -86,19 +86,29 @@ $(document).ready(function () {
                 url: fiveDayURL,
                 method: "GET"
             }).then(function (fiveDayData) {
-                const dayOneIcon = toString(fiveDayData.list[1].weather["icon"])
-                const locationIconLink = "https://openweathermap.org/img/wn/" + dayOneIcon + ".png";
+                // const dayOneIcon = toString(fiveDayData.list[1].weather["icon"])
+                // const locationIconLink = "https://openweathermap.org/img/wn/" + dayOneIcon + ".png";
                 const dayOneTemp = fiveDayData.list[1].main.temp
                 const dayOneHumid = fiveDayData.list[1].main.humidity
-                console.log(dayOneTemp)
-                console.log(dayOneHumid)
-                console.log(dayOneIcon)
-                console.log(locationIconLink)
-                
+                const dayTwoTemp = fiveDayData.list[2].main.temp
+                const dayTwoHumid = fiveDayData.list[2].main.humidity
+                const dayThreeTemp = fiveDayData.list[3].main.temp
+                const dayThreeHumid = fiveDayData.list[3].main.humidity
+                const dayFourTemp = fiveDayData.list[4].main.temp
+                const dayForHumid = fiveDayData.list[4].main.humidity
+                const dayFiveTemp = fiveDayData.list[5].main.temp
+                const dayFiveHumid = fiveDayData.list[5].main.humidity
                 $("#dayOneTemp").text("Temperature:" + dayOneTemp + " °C");
-                $("#dayOneHumdity").text("Humidity:"+ dayOneHumid);
-                
-
+                $("#dayOneHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayTwoTemp").text("Temperature:" + dayOneTemp + " °C");
+                $("#dayTwoHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayThreeTemp").text("Temperature:" + dayOneTemp + " °C");
+                $("#dayThreeHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayFourTemp").text("Temperature:" + dayOneTemp + " °C");
+                $("#dayFourHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayFiveTemp").text("Temperature:" + dayOneTemp + " °C");
+                $("#dayFiveHumdity").text("Humidity:"+ dayOneHumid + "%");
+            
 
             })
         };
