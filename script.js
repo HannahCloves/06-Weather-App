@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    // All dates shown on page
     const todaysDate = (moment().format("ll"));
     $("#dayOneHeader").append(moment().add(1, 'days').format("ll"));
     $("#dayTwoHeader").append(moment().add(2, 'days').format("ll"));
@@ -7,11 +8,12 @@ $(document).ready(function () {
     $("#dayFourHeader").append(moment().add(4, 'days').format("ll"));
     $("#dayFiveHeader").append(moment().add(5, 'days').format("ll"));
 
-
+    // variables
     const locationSearch = $("#location-search");
     const locationPlace = $("#location-search input[name='search-location']");
     const locationError = $("#error");
 
+    //when submit is pressed
     locationSearch.submit(function (event) {
         event.preventDefault();
         const locationPlaceString = locationPlace.val()
@@ -35,7 +37,9 @@ $(document).ready(function () {
             const locationHumid = locationData.main.humidity
             const locationIcon = locationData.weather[0].icon;
             const locationIconLink = "https://openweathermap.org/img/wn/" + locationIcon + ".png";
-            console.log(locationIconLink)
+            const locationLat = locationData.coord.lat
+            const locationLon = locationData.coord.lon
+            const uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + locationLat + "&lon=" + locationLon + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
             $("#main-location").text(locationName + " - " + todaysDate);
             $("#icon").attr("src", locationIconLink)
@@ -43,10 +47,7 @@ $(document).ready(function () {
             $("#mainHumid").text("Humidity: " + locationHumid + "%");
             $("#mainWind").text("Wind Speed: " + locationWind + " MPH");
 
-            const locationLat = locationData.coord.lat
-            const locationLon = locationData.coord.lon
-            const uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + locationLat + "&lon=" + locationLon + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
-
+            
             $.ajax({
                 url: uvURL,
                 method: "GET"
@@ -73,7 +74,8 @@ $(document).ready(function () {
         };
 
         function updateFiveDay(){
-
+            const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
+            console.log(fiveDayURL);
 
 
         }
