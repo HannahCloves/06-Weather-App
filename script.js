@@ -10,6 +10,7 @@ $(document).ready(function () {
 
     const locationSearch = $("#location-search");
     const locationPlace = $("#location-search input[name='search-location']");
+    const locationError = $("#error");
 
     locationSearch.submit(function (event) {
         event.preventDefault();
@@ -21,6 +22,8 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (locationData) {
             updateMainResults(locationData);
+        }).catch(function(error) {
+            locationError.text("Oops, have you spelled something wrong? Try again!");
         });
 
         function updateMainResults(locationData) {
@@ -38,10 +41,8 @@ $(document).ready(function () {
             const locationLat = locationData.coord.lat
             const locationLon = locationData.coord.lon
             const uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + locationLat + "&lon=" + locationLon + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
-            console.log(uvURL)
-
-
-
+            
+         
         };
 
 
