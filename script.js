@@ -86,26 +86,41 @@ $(document).ready(function () {
                 url: fiveDayURL,
                 method: "GET"
             }).then(function (fiveDayData) {
-                // const dayOneIcon = toString(fiveDayData.list[1].weather["icon"])
-                // const locationIconLink = "https://openweathermap.org/img/wn/" + dayOneIcon + ".png";
+                const dayOneIcon = fiveDayData.list[1].weather[0].icon
+                const dayOneIconLink = "https://openweathermap.org/img/wn/" + dayOneIcon + ".png";       
                 const dayOneTemp = fiveDayData.list[1].main.temp
                 const dayOneHumid = fiveDayData.list[1].main.humidity
+
+                const dayTwoIcon = fiveDayData.list[2].weather[0].icon
+                const dayTwoIconLink = "https://openweathermap.org/img/wn/" + dayTwoIcon + ".png"; 
                 const dayTwoTemp = fiveDayData.list[2].main.temp
                 const dayTwoHumid = fiveDayData.list[2].main.humidity
+                const dayThreeIcon = fiveDayData.list[3].weather[0].icon
+                const dayThreeIconLink = "https://openweathermap.org/img/wn/" + dayThreeIcon + ".png"; 
                 const dayThreeTemp = fiveDayData.list[3].main.temp
                 const dayThreeHumid = fiveDayData.list[3].main.humidity
+                const dayFourIcon = fiveDayData.list[4].weather[0].icon
+                const dayFourIconLink = "https://openweathermap.org/img/wn/" + dayFourIcon + ".png";
                 const dayFourTemp = fiveDayData.list[4].main.temp
                 const dayForHumid = fiveDayData.list[4].main.humidity
+                const dayFiveIcon = fiveDayData.list[5].weather[0].icon
+                const dayFiveIconLink = "https://openweathermap.org/img/wn/" + dayFiveIcon + ".png";
                 const dayFiveTemp = fiveDayData.list[5].main.temp
                 const dayFiveHumid = fiveDayData.list[5].main.humidity
+
+                $("#dayOneIcon").attr("src", dayOneIconLink)
                 $("#dayOneTemp").text("Temperature:" + dayOneTemp + " °C");
                 $("#dayOneHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayTwoIcon").attr("src", dayTwoIconLink)
                 $("#dayTwoTemp").text("Temperature:" + dayOneTemp + " °C");
                 $("#dayTwoHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayThreeIcon").attr("src", dayThreeIconLink)
                 $("#dayThreeTemp").text("Temperature:" + dayOneTemp + " °C");
                 $("#dayThreeHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayFourIcon").attr("src", dayThreeIconLink)
                 $("#dayFourTemp").text("Temperature:" + dayOneTemp + " °C");
                 $("#dayFourHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayFiveIcon").attr("src", dayThreeIconLink)
                 $("#dayFiveTemp").text("Temperature:" + dayOneTemp + " °C");
                 $("#dayFiveHumdity").text("Humidity:"+ dayOneHumid + "%");
             
