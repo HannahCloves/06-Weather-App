@@ -13,10 +13,14 @@ $(document).ready(function () {
     const locationPlace = $("#location-search input[name='search-location']");
     const locationError = $("#error");
 
+    //on load up, displays previous city
+
+
+
     //when submit is pressed
     locationSearch.submit(function (event) {
         event.preventDefault();
-        const locationPlaceString = locationPlace.val()
+        let locationPlaceString = locationPlace.val()
         const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
         $.ajax({
@@ -47,7 +51,7 @@ $(document).ready(function () {
             $("#mainHumid").text("Humidity: " + locationHumid + "%");
             $("#mainWind").text("Wind Speed: " + locationWind + " MPH");
 
-            
+
             $.ajax({
                 url: uvURL,
                 method: "GET"
@@ -73,20 +77,22 @@ $(document).ready(function () {
             })
         };
 
-        function updateFiveDay(){
-            const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
-            console.log(fiveDayURL);
-
-
-        }
+        function updateFiveDay(fiveDayData) {
+            event.preventDefault();
+            const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationPlaceString + "&cnt=6&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
+            console.log(fiveDayURL)
             
-
+            $.ajax({
+                url: fiveDayURL,
+                method: "GET"
+            }).then(function (fiveDayData) {
+                const dayOneTemp = fiveDayData.list[1].main.temp
+                const dayOneHumid = fiveDayData.list[1].main.humidity
+                console.log(dayOneTemp)
+                console.log(dayOneHumid)
+                
+            })
+        };
     });
-
-
-
-
-
-
 });
 
