@@ -57,7 +57,7 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (uvData) {
                 const uvRay = uvData.value
-                $("#mainUV").text("UV:" + uvRay);
+                $("#mainUV").text("UV Index:" + uvRay);
 
                 if (uvData.value <= 2) {
                     $("#mainUV").addClass("lowUV");
@@ -80,7 +80,6 @@ $(document).ready(function () {
         function updateFiveDay(fiveDayData) {
             event.preventDefault();
             const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationPlaceString + "&cnt=6&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
-            console.log(fiveDayURL)
             
             $.ajax({
                 url: fiveDayURL,
@@ -90,7 +89,6 @@ $(document).ready(function () {
                 const dayOneIconLink = "https://openweathermap.org/img/wn/" + dayOneIcon + ".png";       
                 const dayOneTemp = fiveDayData.list[1].main.temp
                 const dayOneHumid = fiveDayData.list[1].main.humidity
-
                 const dayTwoIcon = fiveDayData.list[2].weather[0].icon
                 const dayTwoIconLink = "https://openweathermap.org/img/wn/" + dayTwoIcon + ".png"; 
                 const dayTwoTemp = fiveDayData.list[2].main.temp
@@ -109,20 +107,20 @@ $(document).ready(function () {
                 const dayFiveHumid = fiveDayData.list[5].main.humidity
 
                 $("#dayOneIcon").attr("src", dayOneIconLink)
-                $("#dayOneTemp").text("Temperature:" + dayOneTemp + " °C");
-                $("#dayOneHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayOneTemp").text("Temperature: " + dayOneTemp + " °C");
+                $("#dayOneHumdity").text("Humidity: "+ dayOneHumid + "%");
                 $("#dayTwoIcon").attr("src", dayTwoIconLink)
-                $("#dayTwoTemp").text("Temperature:" + dayOneTemp + " °C");
-                $("#dayTwoHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayTwoTemp").text("Temperature: " + dayOneTemp + " °C");
+                $("#dayTwoHumdity").text("Humidity: "+ dayOneHumid + "%");
                 $("#dayThreeIcon").attr("src", dayThreeIconLink)
-                $("#dayThreeTemp").text("Temperature:" + dayOneTemp + " °C");
-                $("#dayThreeHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayThreeTemp").text("Temperature: " + dayOneTemp + " °C");
+                $("#dayThreeHumdity").text("Humidity: "+ dayOneHumid + "%");
                 $("#dayFourIcon").attr("src", dayThreeIconLink)
-                $("#dayFourTemp").text("Temperature:" + dayOneTemp + " °C");
-                $("#dayFourHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayFourTemp").text("Temperature: " + dayOneTemp + " °C");
+                $("#dayFourHumdity").text("Humidity: "+ dayOneHumid + "%");
                 $("#dayFiveIcon").attr("src", dayThreeIconLink)
-                $("#dayFiveTemp").text("Temperature:" + dayOneTemp + " °C");
-                $("#dayFiveHumdity").text("Humidity:"+ dayOneHumid + "%");
+                $("#dayFiveTemp").text("Temperature: " + dayOneTemp + " °C");
+                $("#dayFiveHumdity").text("Humidity: "+ dayOneHumid + "%");
             
 
             })
