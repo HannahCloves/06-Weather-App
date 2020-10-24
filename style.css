@@ -26,6 +26,39 @@ h3 {
     border-color: #ABC4FF;
 }
 
+.lowUV {
+    color: green;
+    font-weight: bolder;
+
+}
+
+.modUV {
+    color: yellow;
+    font-weight: bolder;
+
+}
+
+.highUV {
+    color: orange;
+    font-weight: bolder;
+
+}
+
+.veryHighUV {
+    color: red;
+    font-weight: bolder;
+
+}
+
+.extremeUV {
+    color: purple;
+    font-weight: bolder;
+
+}
+
+
+
+
 /* styling for footer */
 footer {
     position: fixed;

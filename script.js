@@ -11,6 +11,7 @@ $(document).ready(function () {
     const locationSearch = $("#location-search");
     const locationPlace = $("#location-search input[name='search-location']");
     const locationError = $("#error");
+    let uvMessage = $("#uvMessage");
 
     locationSearch.submit(function (event) {
         event.preventDefault();
@@ -45,10 +46,25 @@ $(document).ready(function () {
             $.ajax({
                 url: uvURL,
                 method: "GET"
-            }).then(function (uvURL) {
-                const uvRay = uvURL.value
+            }).then(function (uvData) {
+                const uvRay = uvData.value
                 $("#mainUV").text("UV:" + uvRay);
-                console.log(uvRay)
+                
+                if (uvData.value <= 2){
+                    $("#mainUV").addClass("lowUV");
+                } else if 
+                (uvData.value <= 5) {
+                    $("#mainUV").addClass("modUV")
+                }   else if 
+                (uvData.value <= 7) {
+                    $("#mainUV").addClass("highUV")
+                } else if 
+                (uvData.value <= 10) {
+                    $("#mainUV").addClass("veryHighUV")
+                } else if 
+                (uvData.value >= 11 ) {
+                    $("#mainUV").addClass("extremeUV")
+                }
             })
             
             
