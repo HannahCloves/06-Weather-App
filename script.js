@@ -42,7 +42,17 @@ $(document).ready(function () {
             const locationLon = locationData.coord.lon
             const uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + locationLat + "&lon=" + locationLon + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
             
-         
+            $.ajax({
+                url: uvURL,
+                method: "GET"
+            }).then(function (uvURL) {
+                const uvRay = uvURL.value
+                $("#mainUV").text("UV:" + uvRay);
+                console.log(uvRay)
+            })
+            
+            
+
         };
 
 
