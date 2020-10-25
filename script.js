@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    // let locationsArray = JSON.parse(localStorage.getItem("searchedLocations")) || [];
+    // console.log(locationsArray)
+    // if (locationsArray)
+
+
     // All dates shown on page
     const todaysDate = (moment().format("ll"));
     $("#dayOneHeader").append(moment().add(1, 'days').format("ll"));
@@ -12,6 +17,7 @@ $(document).ready(function () {
     const locationSearch = $("#location-search");
     const locationPlace = $("#location-search input[name='search-location']");
     const locationError = $("#error");
+
 
     //when submit is pressed
     locationSearch.submit(function (event) {
@@ -37,6 +43,7 @@ $(document).ready(function () {
             updateMainResults(locationData);
             updateFiveDay();
             showLocations();
+            locationError.hide()
         }).catch(function (error) {
             locationError.text("Oops, have you spelled something wrong? Try again!");
         });
@@ -139,7 +146,6 @@ $(document).ready(function () {
     function showLocations() {
         $("#previouslySearched").empty();
         let locationsArray = JSON.parse(localStorage.getItem("searchedLocations")) || [];
-
         for (let i = 0; i < locationsArray.length; i++) {
             let locationName = locationsArray[i];
 
@@ -147,6 +153,9 @@ $(document).ready(function () {
         }
     }
 
-    
-    
+    $("#previouslySearched").on("click", ".list-group-item", function(event) {
+        console.log("has this fired")
+      })
+
+
 });

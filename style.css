@@ -1,4 +1,4 @@
-/* nav bar heading styling */
+/* generic styling for different elements of page */
 .navbar, body {
     background-color: white;
 }
@@ -25,6 +25,8 @@ h3 {
     border-style: solid;
     border-color: #ABC4FF;
 }
+
+/* styling for UV ratings */
 
 .lowUV {
     color: green;
@@ -55,6 +57,8 @@ h3 {
     font-weight: bolder;
 
 }
+
+/*button styling for previous searched */
 
 .list-group-item {
     font-size: 15px;
