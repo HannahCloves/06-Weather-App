@@ -20,13 +20,19 @@ $(document).ready(function () {
     //when submit is pressed
     locationSearch.submit(function (event) {
         event.preventDefault();
-        let locationPlaceString = locationPlace.val()
-        const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
-
-        localStorage.setItem("Location", locationPlaceString);
+        let locationPlaceString = locationPlace.val() //location saved a value
+        let searchedLocations = []; //an array to hold each searched location
         
-        console.log(localStorage)
+        searchedLocations = JSON.parse(localStorage.getItem("searchedLocations")) || [];
+        searchedLocations.push(locationPlaceString); 
+        localStorage.setItem("searchedLocations", JSON.stringify(searchedLocations));
+ 
 
+        
+        
+        
+         
+        const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
         $.ajax({
             url: queryURL,
