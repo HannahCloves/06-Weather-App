@@ -22,16 +22,11 @@ $(document).ready(function () {
         event.preventDefault();
         let locationPlaceString = locationPlace.val() //location saved a value
         let searchedLocations = []; //an array to hold each searched location
-        
-        searchedLocations = JSON.parse(localStorage.getItem("searchedLocations")) || [];
-        searchedLocations.push(locationPlaceString); 
-        localStorage.setItem("searchedLocations", JSON.stringify(searchedLocations));
- 
 
-        
-        
-        
-         
+        searchedLocations = JSON.parse(localStorage.getItem("searchedLocations")) || [];
+        searchedLocations.push(locationPlaceString);
+        localStorage.setItem("searchedLocations", JSON.stringify(searchedLocations));
+
         const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
         $.ajax({
@@ -40,6 +35,7 @@ $(document).ready(function () {
         }).then(function (locationData) {
             updateMainResults(locationData);
             updateFiveDay();
+            showLocations();
         }).catch(function (error) {
             locationError.text("Oops, have you spelled something wrong? Try again!");
         });
@@ -91,21 +87,21 @@ $(document).ready(function () {
         function updateFiveDay(fiveDayData) {
             event.preventDefault();
             const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationPlaceString + "&cnt=6&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
-            
+
             $.ajax({
                 url: fiveDayURL,
                 method: "GET"
             }).then(function (fiveDayData) {
                 const dayOneIcon = fiveDayData.list[1].weather[0].icon
-                const dayOneIconLink = "https://openweathermap.org/img/wn/" + dayOneIcon + ".png";       
+                const dayOneIconLink = "https://openweathermap.org/img/wn/" + dayOneIcon + ".png";
                 const dayOneTemp = fiveDayData.list[1].main.temp
                 const dayOneHumid = fiveDayData.list[1].main.humidity
                 const dayTwoIcon = fiveDayData.list[2].weather[0].icon
-                const dayTwoIconLink = "https://openweathermap.org/img/wn/" + dayTwoIcon + ".png"; 
+                const dayTwoIconLink = "https://openweathermap.org/img/wn/" + dayTwoIcon + ".png";
                 const dayTwoTemp = fiveDayData.list[2].main.temp
                 const dayTwoHumid = fiveDayData.list[2].main.humidity
                 const dayThreeIcon = fiveDayData.list[3].weather[0].icon
-                const dayThreeIconLink = "https://openweathermap.org/img/wn/" + dayThreeIcon + ".png"; 
+                const dayThreeIconLink = "https://openweathermap.org/img/wn/" + dayThreeIcon + ".png";
                 const dayThreeTemp = fiveDayData.list[3].main.temp
                 const dayThreeHumid = fiveDayData.list[3].main.humidity
                 const dayFourIcon = fiveDayData.list[4].weather[0].icon
@@ -119,23 +115,36 @@ $(document).ready(function () {
 
                 $("#dayOneIcon").attr("src", dayOneIconLink)
                 $("#dayOneTemp").text("Temperature: " + dayOneTemp + " °C");
-                $("#dayOneHumdity").text("Humidity: "+ dayOneHumid + "%");
+                $("#dayOneHumdity").text("Humidity: " + dayOneHumid + "%");
                 $("#dayTwoIcon").attr("src", dayTwoIconLink)
                 $("#dayTwoTemp").text("Temperature: " + dayOneTemp + " °C");
-                $("#dayTwoHumdity").text("Humidity: "+ dayOneHumid + "%");
+                $("#dayTwoHumdity").text("Humidity: " + dayOneHumid + "%");
                 $("#dayThreeIcon").attr("src", dayThreeIconLink)
                 $("#dayThreeTemp").text("Temperature: " + dayOneTemp + " °C");
-                $("#dayThreeHumdity").text("Humidity: "+ dayOneHumid + "%");
+                $("#dayThreeHumdity").text("Humidity: " + dayOneHumid + "%");
                 $("#dayFourIcon").attr("src", dayThreeIconLink)
                 $("#dayFourTemp").text("Temperature: " + dayOneTemp + " °C");
-                $("#dayFourHumdity").text("Humidity: "+ dayOneHumid + "%");
+                $("#dayFourHumdity").text("Humidity: " + dayOneHumid + "%");
                 $("#dayFiveIcon").attr("src", dayThreeIconLink)
                 $("#dayFiveTemp").text("Temperature: " + dayOneTemp + " °C");
-                $("#dayFiveHumdity").text("Humidity: "+ dayOneHumid + "%");
-            
+                $("#dayFiveHumdity").text("Humidity: " + dayOneHumid + "%");
+
 
             })
         };
+
+        showLocations()
+
     });
+    function showLocations() {
+        $("#previouslySearched").empty(); 
+        let locationsArray = JSON.parse(localStorage.getItem("searchedLocations")) || []; 
+
+        for (let i = 0; i < locationsArray.length; i++) { 
+            let locationName = locationsArray[i]; 
+
+            $("#previouslySearched").append("<button class='list-group-item'>" + locationName + "</button>")
+        } 
+    }  
 });
 

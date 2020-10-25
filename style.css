@@ -56,6 +56,13 @@ h3 {
 
 }
 
+.list-group-item {
+    font-size: 15px;
+    font-weight: bolder;
+    border-style: solid;
+    border-color: #ABC4FF;
+    border-radius: 10px;
+}
 
 
 
