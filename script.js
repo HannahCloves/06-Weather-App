@@ -23,6 +23,11 @@ $(document).ready(function () {
         let locationPlaceString = locationPlace.val()
         const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
+        localStorage.setItem("Location", locationPlaceString);
+        
+        console.log(localStorage)
+
+
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -63,16 +68,16 @@ $(document).ready(function () {
                     $("#mainUV").addClass("lowUV");
                 } else if
                     (uvData.value <= 5) {
-                    $("#mainUV").addClass("modUV")
+                    $("#mainUV").addClass("modUV").removeClass("lowUV highUV veryHighUV extremeUV")
                 } else if
                     (uvData.value <= 7) {
-                    $("#mainUV").addClass("highUV")
+                    $("#mainUV").addClass("highUV").removeClass("lowUV modUV veryHighUV extremeUV")
                 } else if
                     (uvData.value <= 10) {
-                    $("#mainUV").addClass("veryHighUV")
+                    $("#mainUV").addClass("veryHighUV").removeClass("lowUV modUVhighUV highUV extremeUV")
                 } else if
                     (uvData.value >= 11) {
-                    $("#mainUV").addClass("extremeUV")
+                    $("#mainUV").addClass("extremeUV").removeClass("lowUV modUVhighUV highUV veryHighUV")
                 }
             })
         };
