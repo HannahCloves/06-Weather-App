@@ -13,13 +13,14 @@ $(document).ready(function () {
     const locationPlace = $("#location-search input[name='search-location']");
     const locationError = $("#error");
 
-    //on load up, displays previous city
-
-
-
     //when submit is pressed
     locationSearch.submit(function (event) {
         event.preventDefault();
+        displayWeather()
+
+    });
+
+    function displayWeather() {
         let locationPlaceString = locationPlace.val() //location saved a value
         let searchedLocations = []; //an array to hold each searched location
 
@@ -40,8 +41,8 @@ $(document).ready(function () {
             locationError.text("Oops, have you spelled something wrong? Try again!");
         });
 
+
         function updateMainResults(locationData) {
-            event.preventDefault();
             const locationName = locationData.name
             const locationTemp = locationData.main.temp
             const locationWind = locationData.wind.speed
@@ -67,7 +68,7 @@ $(document).ready(function () {
                 $("#mainUV").text("UV Index:" + uvRay);
 
                 if (uvData.value <= 2) {
-                    $("#mainUV").addClass("lowUV");
+                    $("#mainUV").addClass("lowUV").removeClass("modUV highUV veryHighUV extremeUV");
                 } else if
                     (uvData.value <= 5) {
                     $("#mainUV").addClass("modUV").removeClass("lowUV highUV veryHighUV extremeUV")
@@ -85,7 +86,6 @@ $(document).ready(function () {
         };
 
         function updateFiveDay(fiveDayData) {
-            event.preventDefault();
             const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationPlaceString + "&cnt=6&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
             $.ajax({
@@ -134,16 +134,19 @@ $(document).ready(function () {
         };
 
         showLocations()
+    }
 
-    });
     function showLocations() {
-        $("#previouslySearched").empty(); 
-        let locationsArray = JSON.parse(localStorage.getItem("searchedLocations")) || []; 
+        $("#previouslySearched").empty();
+        let locationsArray = JSON.parse(localStorage.getItem("searchedLocations")) || [];
 
-        for (let i = 0; i < locationsArray.length; i++) { 
-            let locationName = locationsArray[i]; 
+        for (let i = 0; i < locationsArray.length; i++) {
+            let locationName = locationsArray[i];
 
             $("#previouslySearched").append("<button class='list-group-item'>" + locationName + "</button>")
-        } 
-    }  
+        }
+    }
+
+    
+    
 });
