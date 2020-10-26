@@ -147,6 +147,7 @@ $(document).ready(function () {
     function showLocations() {
         $("#previouslySearched").empty();
         let locationsArray = JSON.parse(localStorage.getItem("searchedLocations")) || [];
+       
         for (let i = 0; i < locationsArray.length; i++) {
             let locationName = locationsArray[i];
 
@@ -160,7 +161,10 @@ $(document).ready(function () {
 
       })
 
-
+      let locationsHistory = JSON.parse(localStorage.getItem("searchedLocations")) || [];
+      if(locationsHistory.length > 0) {
+          displayWeather(locationsHistory[locationsHistory.length-1]);
+      }
     showLocations();
-
+   
 });
