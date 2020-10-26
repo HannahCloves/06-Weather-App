@@ -36,7 +36,7 @@ $(document).ready(function () {
         searchedLocations.push(location);
         localStorage.setItem("searchedLocations", JSON.stringify(searchedLocations));
          }
-        const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
+        const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=fb517bd849e0220a93b8751e3f2588d2";
 
         $.ajax({
             url: queryURL,
@@ -60,7 +60,7 @@ $(document).ready(function () {
             const locationIconLink = "https://openweathermap.org/img/wn/" + locationIcon + ".png";
             const locationLat = locationData.coord.lat
             const locationLon = locationData.coord.lon
-            const uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + locationLat + "&lon=" + locationLon + "&appid=b3b7b9cfe416e5f453d88191c003cae5";
+            const uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + locationLat + "&lon=" + locationLon + "&appid=fb517bd849e0220a93b8751e3f2588d2";
 
             $("#main-location").text(locationName + " - " + todaysDate);
             $("#icon").attr("src", locationIconLink)
@@ -95,7 +95,7 @@ $(document).ready(function () {
         };
 
         function updateFiveDay(fiveDayData) {
-            const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&cnt=6&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
+            const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&cnt=6&units=metric&appid=fb517bd849e0220a93b8751e3f2588d2";
 
             $.ajax({
                 url: fiveDayURL,
