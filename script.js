@@ -22,19 +22,20 @@ $(document).ready(function () {
     //when submit is pressed
     locationSearch.submit(function (event) {
         event.preventDefault();
-        displayWeather()
+        locationSearched = locationPlace.val();
+        displayWeather(locationSearched);
 
     });
 
-    function displayWeather() {
-        let locationPlaceString = locationPlace.val() //location saved a value
-        let searchedLocations = []; //an array to hold each searched location
+    function displayWeather(location) {
+       // let locationPlaceString = location || locationPlace.val() //location saved a value
+        //let searchedLocations = []; //an array to hold each searched location
 
         searchedLocations = JSON.parse(localStorage.getItem("searchedLocations")) || [];
-        searchedLocations.push(locationPlaceString);
+        searchedLocations.push(location);
         localStorage.setItem("searchedLocations", JSON.stringify(searchedLocations));
 
-        const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + locationPlaceString + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
+        const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
         $.ajax({
             url: queryURL,
@@ -93,7 +94,7 @@ $(document).ready(function () {
         };
 
         function updateFiveDay(fiveDayData) {
-            const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationPlaceString + "&cnt=6&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
+            const fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&cnt=6&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
             $.ajax({
                 url: fiveDayURL,
@@ -149,13 +150,17 @@ $(document).ready(function () {
         for (let i = 0; i < locationsArray.length; i++) {
             let locationName = locationsArray[i];
 
-            $("#previouslySearched").append("<button class='list-group-item'>" + locationName + "</button>")
+            $("#previouslySearched").append("<li class='list-group-item' id='locationButton'>" + locationName + "</li>")
         }
     }
 
-    $("#previouslySearched").on("click", ".list-group-item", function(event) {
-        console.log("has this fired")
+    $("#previouslySearched").on("click", "li", function(event) {
+        const locationButton = $(this).text();
+        displayWeather(locationButton);
+
       })
 
+
+    showLocations();
 
 });
