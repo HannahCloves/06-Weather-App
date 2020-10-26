@@ -18,13 +18,11 @@ $(document).ready(function () {
     const locationPlace = $("#location-search input[name='search-location']");
     const locationError = $("#error");
 
-
     //when submit is pressed
     locationSearch.submit(function (event) {
         event.preventDefault();
         locationSearched = locationPlace.val();
         displayWeather(locationSearched);
-
     });
 
     function displayWeather(location) {

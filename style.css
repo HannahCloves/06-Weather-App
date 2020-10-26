@@ -16,7 +16,7 @@ h3 {
     padding-right: 20px;
 }
 
-.card-body, .card-block {
+.card-body, .card-block, ul {
     text-align: center;
     background-color: #CCDBFD;
 }
