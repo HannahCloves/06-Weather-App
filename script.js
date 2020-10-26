@@ -30,11 +30,12 @@ $(document).ready(function () {
     function displayWeather(location) {
        // let locationPlaceString = location || locationPlace.val() //location saved a value
         //let searchedLocations = []; //an array to hold each searched location
-
+        
         searchedLocations = JSON.parse(localStorage.getItem("searchedLocations")) || [];
+        if (searchedLocations.indexOf(location) === -1){
         searchedLocations.push(location);
         localStorage.setItem("searchedLocations", JSON.stringify(searchedLocations));
-
+         }
         const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b3b7b9cfe416e5f453d88191c003cae5";
 
         $.ajax({
