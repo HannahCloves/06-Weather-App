@@ -1,4 +1,4 @@
-06-Weather-App
+Weather Dashboard
 =====================
 
 A weather dashboard set up to help those on the go or who want to plan a trip. You can see what the weather is as of right now and for the next 5 days. 
